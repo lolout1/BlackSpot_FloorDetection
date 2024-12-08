@@ -1,0 +1,17 @@
+# configs/floor_config.yaml
+model:
+  name: yolov8x-seg.pt
+  image_size: 640
+
+training:
+  epochs: 100
+  batch_size: 16
+  patience: 20
+  learning_rate: 0.001
+
+data:
+  train: ../data/processed/train
+  val: ../data/processed/val
+  test: ../data/processed/test
+  num_classes: 1
+  class_names: ['floor']
