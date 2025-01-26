@@ -1,3 +1,21 @@
 
 /runs
 *.cache
+/cleaned
+/cleaned
+/cleaned
+/data/output
+/data/output/.ipynb_checkpoints
+/data/jpg_files
+/data/trainMulti
+/cleaned
+/output_floor_blackspot
+/.ipynb_checkpoints
+/cleaned/.ipynb_checkpoints
+/test/.ipynb_checkpoints
+/data/test/images/.ipynb_checkpoints
+valid/DALL-E-2025-01-05-02-45-45-A-very-simple-indoor-room-designed-to-simulate-a-basic-challenge-for-Alzheimer-s-patients-The-room-features-a-plain-white-wall-a-gray-floor-and-a-s_webp.rf.6cac6d87db02c6021c597a8f6fb9d5d8.jpg
+/valid/.ipynb_checkpoints
+/test
+/train
+/valid
