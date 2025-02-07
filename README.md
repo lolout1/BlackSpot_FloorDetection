@@ -7,7 +7,6 @@ This repository contains a Detectron2-based pipeline for **segmenting floors** i
 - **Robotics**: detecting irregular floor surfaces or potential obstacles.  
 - **Assisted living**: noticing spills or trip hazards in real time.
 
-  
 ## Key Features
 
 1. **Two-Category Segmentation**  
@@ -28,18 +27,16 @@ This repository contains a Detectron2-based pipeline for **segmenting floors** i
    - Uses **mAP**, **AR**, and other standard metrics via COCOEvaluator.  
    - Provides both **bounding box** and **mask** (segmentation) evaluation results.
 
-
----
-
 ## Example Results
 
 Below is an example detection result.  
 A **red bounding box** highlights a “blackspot” region that overlaps with the **floor**:
 
-![Blackspot Over Floor Detection - Demo](docs/blackspot_demo.png)  
-*(In this image, the black rug on the floor is automatically detected, and the bounding box is drawn only if the blackspot mask overlaps with the floor mask.)*
+![Bounding Box Detection](Images/box1.png)
 
----
+![Segmentation Detection](Images/segmentation1.png)
+
+*(In this image, the black rug on the floor is automatically detected, and the bounding box is drawn only if the blackspot mask overlaps with the floor mask.)*
 
 ## Repository Contents
 
@@ -49,6 +46,8 @@ A **red bounding box** highlights a “blackspot” region that overlaps with th
   3. Configure and train Mask R-CNN on the new categories.
   4. Evaluate the model with COCO metrics.
   5. Run inference on a sample test image.
+  
+- **`PostProcess.ipynb`**: Demonstrates how to post-process the model outputs to obtain bounding boxes, masks, etc.
 
 - **`train/`, `valid/`, `test/`**: Example dataset folders containing images and COCO-format JSON annotations (`_annotations.coco.json`).
 
@@ -57,8 +56,6 @@ A **red bounding box** highlights a “blackspot” region that overlaps with th
 - **`utils/`**: Utility scripts for data loading, annotation unification, etc.
 
 - **`Floor Blackspot Detect.v3i.coco-segmentation.zip`**: The dataset (COCO segmentation style) if included.
-
----
 
 ## Why This Model Is Effective
 
@@ -77,9 +74,6 @@ A **red bounding box** highlights a “blackspot” region that overlaps with th
    - Standard, well-known metrics for measuring bounding box **and** mask AP across different IoU thresholds.  
    - Quick insight into how well the model generalizes to new floor types and blackspots.
 
-
----
-
 ## Installation & Setup
 
 1. **Clone the Repository**  
@@ -92,7 +86,7 @@ A **red bounding box** highlights a “blackspot” region that overlaps with th
    ```bash
    conda create -n floor_blackspot python=3.10 -y
    conda activate floor_blackspot
-   # or python -m venv venv and source venv/bin/activate
+   # or: python -m venv venv && source venv/bin/activate
    ```
 
 3. **Install Dependencies**  
@@ -111,8 +105,6 @@ A **red bounding box** highlights a “blackspot” region that overlaps with th
    ```
    If `True`, the code will run with `cfg.MODEL.DEVICE = "cuda:0"`.
 
----
-
 ## Data Preparation
 
 1. **COCO-Style Dataset**  
@@ -130,8 +122,6 @@ A **red bounding box** highlights a “blackspot” region that overlaps with th
      3. **Registers** it with Detectron2’s `DatasetCatalog`.
 
 *(All of this logic is in the example script.)*
-
----
 
 ## Training
 
@@ -156,8 +146,6 @@ A **red bounding box** highlights a “blackspot” region that overlaps with th
    - Output logs appear in the console.
    - By default, final weights get saved in `./output_floor_blackspot/`.
 
----
-
 ## Evaluation
 
 1. **COCOEvaluator**  
@@ -180,8 +168,6 @@ A **red bounding box** highlights a “blackspot” region that overlaps with th
    ...
    ```
    This indicates floors are detected quite reliably, while blackspot detection AP is around 15–20%. Further data or training can improve blackspot performance.
-
----
 
 ## Inference / Demo
 
@@ -218,20 +204,16 @@ combined_floor_mask = np.any(floor_masks, axis=0) if floor_masks else None
 
 When you display the result (using OpenCV or matplotlib), you’ll see bounding boxes only on blackspot regions that lie on top of the detected floor.
 
----
-
 ## Why This Matters
 
 - **Safety**: Promptly detect unusual floor conditions in real-world environments.  
 - **Accuracy**: Mask R-CNN’s segmentation approach outperforms simple bounding-box detectors for tasks like mat/spill detection.  
-- **Scalability**: You can add more categories (like “objects on the floor”) if needed, but the pipeline stays the same.  
-
----
+- **Scalability**: You can add more categories (like “objects on the floor”) if needed, but the pipeline stays the same.
 
 ## Troubleshooting & Tips
 
 1. **Check Image Paths**  
-   - Make sure your `train/`, `valid/`, `test/` folder structure and `*_annotations.coco.json` references the correct image filenames.
+   - Make sure your `train/`, `valid/`, `test/` folder structure and `*_annotations.coco.json` reference the correct image filenames.
 
 2. **Multiple Floor Categories**  
    - Confirm that your original annotation IDs for “Floors” unify into ID=0 (the script does this automatically).
@@ -244,12 +226,12 @@ When you display the result (using OpenCV or matplotlib), you’ll see bounding 
    - GPU is recommended (NVIDIA CUDA).  
    - If you only have CPU, training will be slower—make sure you change `cfg.MODEL.DEVICE = "cpu"`.
 
----
-
 ## Conclusion
 
 With this repository, you can:
-- **Train a Mask R-CNN** model to identify **floors** vs. **blackspots** in a single pass.  
-- **Highlight** blackspots **only** if they lie on top of floors.  
-- Use standard **COCO metrics** to measure performance.  
+- **Train a Mask R-CNN** model to identify **floors** vs. **blackspots** in a single pass.
+- **Highlight** blackspots **only** if they lie on top of floors.
+- Use standard **COCO metrics** to measure performance.
+
+
 
