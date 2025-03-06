@@ -1,6 +1,6 @@
-
+Coming soon..Sam2 [https://github.com/facebookresearch/sam2/tree/main/sam2](sam2_link)
 # Blackspot-in-Floor Detection (Mask R-CNN)
-
+[https://github.com/facebookresearch/sam2/tree/main/sam2](sam2_link)
 This repository contains a Detectron2-based pipeline for **segmenting floors** in an image and subsequently detecting **“blackspots”** (dark rug, mat, or spill) **only** if they lie on top of the floor area. This can be especially useful for:
 
 - **Hazard detection**: identifying wet or slippery areas on floors.  
