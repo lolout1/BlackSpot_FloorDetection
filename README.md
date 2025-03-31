@@ -1,4 +1,4 @@
-Sam2 [https://github.com/lolout1/sam2Contrast](sam2_link_ContrastAlzheimersDefect)
+Sam2 [https://github.com/lolout1/sam2Contrast]
 # Blackspot-in-Floor Detection (Mask R-CNN)
 
 This repository contains a Detectron2-based pipeline for **segmenting floors** in an image and subsequently detecting **“blackspots”** (dark rug, mat, or spill) **only** if they lie on top of the floor area. This can be especially useful for:
